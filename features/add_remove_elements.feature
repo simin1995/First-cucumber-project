@@ -1,18 +1,16 @@
 @wip
 Feature: Add or remove elements on the page
 
-    Background: 
-      Given I am on the "add_remove_elements/" page
-
     @addElements
-    Scenario: I can add and elements
-      When I click the add element button 
-      Then Delete buttons are displayed
+    Scenario: I click on AddElement button and element is displayed\
+      Given I am on the add_remove_elements page
+      When I click on AddElement button
+      Then element is displayed
+
 
     @removeElements
-    Scenario: I can delete elements
-      Given Delete buttons exists
-      When When I click the delete button
-      Then Delete buttons are not displayed
+    Scenario: I click on Delete button and element is not displayed
+      When I click Delete button
+      Then element is not displayed
 
 

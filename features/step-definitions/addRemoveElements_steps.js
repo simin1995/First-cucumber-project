@@ -1,34 +1,31 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
 
-Given("I am on the {string} page", async (page) => {
-    await browser.url(`https://the-internet.herokuapp.com/${page}`);
-});
-
  // addElements
 
-When("I click the add element button", async () => {
+Given("I am on the add_remove_elements page", async () => {
+    await browser.url(`https://the-internet.herokuapp.com/add_remove_elements/`);
+});
+
+When("I click on AddElement button", async () => {
+    await $('//*[@id="content"]/div/button').click();
     await $('//*[@id="content"]/div/button').click();
 });
 
-Then("Delete buttons are displayed", async () => {
-    const deleteButton = await $('//*[@id="elements"]/button');
-    await expect(deleteButton).toExist();
+Then("element is displayed", async () => {
+    let deleteButton = await $('#elements');
+    let isDisplayed = await deleteButton.isDisplayed();
+    console.log(isDisplayed);
 });
 
 // removeElements
 
-Given("Delete buttons exists", async () => {
-    const deleteButton = await $('//*[@id="elements"]/button');
-    await expect(deleteButton).toExist();
-    await expect(deleteButton).toBeClickable();
+When("I click Delete button", async () => {
+    await $('#elements').click();
+    await $('#elements').click();
 });
 
-When("When I click the delete button", async () => {
-    await $('//*[@id="elements"]/button').click();
-});
-
-Then("Delete buttons are not displayed", async () => {
-    const deleteButton = await $('//*[@id="elements"]/button');
+Then("element is not displayed", async () => {
+    const deleteButton = await $('#elements');
     let isDisplayed = await deleteButton.isDisplayed();
     console.log(isDisplayed) == false;
 });
